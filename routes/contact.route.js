@@ -9,6 +9,7 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.APP_SPECIFIC_PASSWORD,
   },
+  debug: true, // Add this line
 });
 
 router.post("/send", async (req, res) => {
@@ -30,7 +31,9 @@ router.post("/send", async (req, res) => {
     res.status(200).json({ message: "Email sent successfully" });
   } catch (error) {
     console.error("Error sending email:", error);
-    res.status(500).json({ error: "Failed to send email" });
+    res
+      .status(500)
+      .json({ error: "Failed to send email", details: error.message });
   }
 });
 
