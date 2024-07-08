@@ -20,11 +20,7 @@ async function main() {
   app.use(express.json());
 
   // allow CORS for local development (for production, you should configure it properly)
-  app.use(
-    cors({
-      origin: "http://localhost:5173",
-    })
-  );
+  app.use(cors());
 
   // Routes
   const authRoutes = require("./routes/auth.route");
